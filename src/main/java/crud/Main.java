@@ -3,6 +3,9 @@ package crud;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import crud.modelo_admin.application.CreateAdminUseCase;
+import crud.modelo_admin.infrastructure.in.AdminController;
+import crud.modelo_admin.infrastructure.out.AdminRepository;
 import crud.paises.application.CreatePaisUseCase;
 import crud.paises.infrastructure.in.PaisController;
 import crud.paises.infrastructure.out.PaisRepository;
@@ -21,15 +24,20 @@ class Menu {
     private Scanner scanner = new Scanner(System.in);
     private PaisController paisController;
     private ActivoController activoController;
+    private AdminController adminController;
 
     public Menu() {
-        // Aquí debes proporcionar instancias reales de CreatePaisUseCase y PaisRepository
+        // Aquí debes proporcionar instancias reales de CreatePaisUseCase y
+        // PaisRepository
         PaisRepository paisRepository = new PaisRepository();
         CreatePaisUseCase createPaisUseCase = new CreatePaisUseCase(paisRepository);
         paisController = new PaisController(createPaisUseCase, paisRepository);
         ActivoRepository activoRepository = new ActivoRepository();
         CreateActivoUseCase createActivoUseCase = new CreateActivoUseCase(activoRepository);
         activoController = new ActivoController(createActivoUseCase, activoRepository);
+        AdminRepository adminRepository = new AdminRepository();
+        CreateAdminUseCase createAdminUseCase = new CreateAdminUseCase(adminRepository);
+        adminController = new AdminController(createAdminUseCase, adminRepository);
     }
 
     public void start() {
@@ -69,7 +77,7 @@ class Menu {
                     activoController.tabla_principio_activo();
                     break;
                 case 3:
-                    // tabla de modelo_administracion
+                    adminController.tabla_admin();
                     break;
                 case 4:
                     // tabla de unidad_medida
