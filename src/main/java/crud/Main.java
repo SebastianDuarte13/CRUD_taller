@@ -6,12 +6,19 @@ import java.util.Scanner;
 import crud.modelo_admin.application.CreateAdminUseCase;
 import crud.modelo_admin.infrastructure.in.AdminController;
 import crud.modelo_admin.infrastructure.out.AdminRepository;
+
 import crud.paises.application.CreatePaisUseCase;
 import crud.paises.infrastructure.in.PaisController;
 import crud.paises.infrastructure.out.PaisRepository;
+
 import crud.principio_activo.application.CreateActivoUseCase;
 import crud.principio_activo.infrastructure.in.ActivoController;
 import crud.principio_activo.infrastructure.out.ActivoRepository;
+
+import crud.unidad_medida.application.CreateMedidaUseCase;
+import crud.unidad_medida.infrastructure.in.MedidaController;
+import crud.unidad_medida.infrastructure.out.MedidaRepository;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +32,7 @@ class Menu {
     private PaisController paisController;
     private ActivoController activoController;
     private AdminController adminController;
+    private MedidaController medidaController;
 
     public Menu() {
         // Aquí debes proporcionar instancias reales de CreatePaisUseCase y
@@ -32,12 +40,18 @@ class Menu {
         PaisRepository paisRepository = new PaisRepository();
         CreatePaisUseCase createPaisUseCase = new CreatePaisUseCase(paisRepository);
         paisController = new PaisController(createPaisUseCase, paisRepository);
+
         ActivoRepository activoRepository = new ActivoRepository();
         CreateActivoUseCase createActivoUseCase = new CreateActivoUseCase(activoRepository);
         activoController = new ActivoController(createActivoUseCase, activoRepository);
+        
         AdminRepository adminRepository = new AdminRepository();
         CreateAdminUseCase createAdminUseCase = new CreateAdminUseCase(adminRepository);
         adminController = new AdminController(createAdminUseCase, adminRepository);
+
+        MedidaRepository medidaRepository = new MedidaRepository();
+        CreateMedidaUseCase createMedidaUseCase = new CreateMedidaUseCase(medidaRepository);
+        medidaController = new MedidaController(createMedidaUseCase, medidaRepository);
     }
 
     public void start() {
@@ -80,7 +94,7 @@ class Menu {
                     adminController.tabla_admin();
                     break;
                 case 4:
-                    // tabla de unidad_medida
+                    medidaController.tabla_unidad_medida();
                     break;
                 case 5:
                     // tabla de region
