@@ -6,6 +6,9 @@ import java.util.Scanner;
 import crud.paises.application.CreatePaisUseCase;
 import crud.paises.infrastructure.in.PaisController;
 import crud.paises.infrastructure.out.PaisRepository;
+import crud.principio_activo.application.CreateActivoUseCase;
+import crud.principio_activo.infrastructure.in.ActivoController;
+import crud.principio_activo.infrastructure.out.ActivoRepository;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,12 +20,16 @@ public class Main {
 class Menu {
     private Scanner scanner = new Scanner(System.in);
     private PaisController paisController;
+    private ActivoController activoController;
 
     public Menu() {
         // Aquí debes proporcionar instancias reales de CreatePaisUseCase y PaisRepository
         PaisRepository paisRepository = new PaisRepository();
         CreatePaisUseCase createPaisUseCase = new CreatePaisUseCase(paisRepository);
         paisController = new PaisController(createPaisUseCase, paisRepository);
+        ActivoRepository activoRepository = new ActivoRepository();
+        CreateActivoUseCase createActivoUseCase = new CreateActivoUseCase(activoRepository);
+        activoController = new ActivoController(createActivoUseCase, activoRepository);
     }
 
     public void start() {
@@ -59,7 +66,7 @@ class Menu {
                     paisController.tabla_paises();
                     break;
                 case 2:
-                    // tabla de principio_activo
+                    activoController.tabla_principio_activo();
                     break;
                 case 3:
                     // tabla de modelo_administracion

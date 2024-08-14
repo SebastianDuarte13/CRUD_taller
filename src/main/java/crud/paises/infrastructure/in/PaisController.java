@@ -98,6 +98,7 @@ public class PaisController {
         try {
             paisService.updatePais(pais);
             System.out.println("País actualizado exitosamente!");
+            esperarTecla();
         } catch (Exception e) {
             System.out.println("Error al actualizar país: " + e.getMessage());
         }
