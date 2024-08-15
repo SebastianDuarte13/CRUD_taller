@@ -7,6 +7,10 @@ import crud.ciudad.apllication.CreateCiudadUseCase;
 import crud.ciudad.infrastructure.in.CiudadController;
 import crud.ciudad.infrastructure.out.CiudadRepository;
 
+import crud.clientes.application.CreateClienteUseCase;
+import crud.clientes.infrastructure.in.ClienteController;
+import crud.clientes.infrastructure.out.ClienteRepository;
+
 import crud.modelo_admin.application.CreateAdminUseCase;
 import crud.modelo_admin.infrastructure.in.AdminController;
 import crud.modelo_admin.infrastructure.out.AdminRepository;
@@ -27,6 +31,10 @@ import crud.region.application.CreateRegionUseCase;
 import crud.region.infrastructure.in.RegionController;
 import crud.region.infrastructure.out.RegionRepository;
 
+import crud.farmacia.infrastructure.in.FarmaciaController;
+import crud.farmacia.infrastructure.out.FarmaciaRepository;
+import crud.farmacia.application.CreateFarmaciaUseCase;
+
 public class MenuPrincipal {
     private Scanner scanner = new Scanner(System.in);
     private PaisController paisController;
@@ -35,10 +43,11 @@ public class MenuPrincipal {
     private MedidaController medidaController;
     private RegionController regionController;
     private CiudadController ciudadController;
+    private ClienteController clienteController;
+    private FarmaciaController farmaciaController;
 
     public MenuPrincipal() {
-        // Aquí debes proporcionar instancias reales de CreatePaisUseCase y
-        // PaisRepository
+        
         PaisRepository paisRepository = new PaisRepository();
         CreatePaisUseCase createPaisUseCase = new CreatePaisUseCase(paisRepository);
         paisController = new PaisController(createPaisUseCase, paisRepository);
@@ -62,6 +71,14 @@ public class MenuPrincipal {
         CiudadRepository ciudadRepository = new CiudadRepository();
         CreateCiudadUseCase createCiudadUseCase = new CreateCiudadUseCase(ciudadRepository);
         ciudadController = new CiudadController(createCiudadUseCase, ciudadRepository, scanner);
+
+        ClienteRepository clienteRepository = new ClienteRepository();
+        CreateClienteUseCase createClienteUseCase = new CreateClienteUseCase(clienteRepository);
+        clienteController = new ClienteController(createClienteUseCase, clienteRepository, scanner);
+
+        FarmaciaRepository farmaciaRepository = new FarmaciaRepository();
+        CreateFarmaciaUseCase createFarmaciaUseCase = new CreateFarmaciaUseCase(farmaciaRepository);
+        farmaciaController = new FarmaciaController(createFarmaciaUseCase, farmaciaRepository, scanner);
     }
 
     public void start() {
@@ -113,10 +130,10 @@ public class MenuPrincipal {
                     ciudadController.tabla_ciudad();
                     break;
                 case 7:
-                    // tabla de clientes
+                    clienteController.tabla_cliente();
                     break;
                 case 8:
-                    // tabla de farmacia
+                    farmaciaController.tabla_farmacia();
                     break;
                 case 9:
                     // tabla de laboratorio

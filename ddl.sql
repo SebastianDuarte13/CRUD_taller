@@ -54,7 +54,7 @@ CREATE TABLE farmacia (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(60),
     direccion VARCHAR(100),
-    `long` FLOAT,
+    longitud FLOAT,
     lat FLOAT,
     cod_ciudad VARCHAR(5),
     logo VARCHAR(50),

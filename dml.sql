@@ -44,7 +44,7 @@ INSERT INTO clientes (id, nombres, apellidos, email, fecha_nacimiento, lon, lati
 ('CC45678901', 'Luisa', 'Martínez', 'luisa.martinez@example.com', '1995-02-28', -73.1198, 7.11935, '004'),
 ('CC56789012', 'Ana', 'Ramírez', 'ana.ramirez@example.com', '1982-07-04', -75.56359, 10.40043, '005');
 
-INSERT INTO farmacia (nombre, direccion, `long`, lat, cod_ciudad, logo) VALUES 
+INSERT INTO farmacia (nombre, direccion, longitud, lat, cod_ciudad, logo) VALUES 
 ('Farmatodo Bogotá', 'Carrera 15 # 94-45, Bogotá', -74.04663, 4.6829, '001', 'farmatodo_bogota.png'),
 ('Drogas La Rebaja Medellín', 'Calle 50 # 51-55, Medellín', -75.5763, 6.24756, '002', 'rebaja_medellin.png'),
 ('Cruz Verde Cali', 'Carrera 100 # 11-42, Cali', -76.52964, 3.37356, '003', 'cruz_verde_cali.png'),
