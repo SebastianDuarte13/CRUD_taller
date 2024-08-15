@@ -50,9 +50,9 @@ public class CiudadRepository implements CiudadService{
         String sql = "UPDATE ciudad SET nombre = ?, cod_region = ? WHERE codigo_ciudad = ?";
         try (Connection connection = DatabaseConfig.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(2, ciudad.getNombre());
-            statement.setString(3, ciudad.getCod_region());
-            statement.setString(1, ciudad.getCodigo_ciudad());
+            statement.setString(1, ciudad.getNombre());
+            statement.setString(2, ciudad.getCod_region());
+            statement.setString(3, ciudad.getCodigo_ciudad());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -35,6 +35,10 @@ import crud.farmacia.infrastructure.in.FarmaciaController;
 import crud.farmacia.infrastructure.out.FarmaciaRepository;
 import crud.farmacia.application.CreateFarmaciaUseCase;
 
+import crud.laboratorio.infrastructure.in.LaboratorioController;
+import crud.laboratorio.application.CreateLaboratorioUseCase;
+import crud.laboratorio.infrastructure.out.LaboratorioRepository;
+
 public class MenuPrincipal {
     private Scanner scanner = new Scanner(System.in);
     private PaisController paisController;
@@ -45,9 +49,10 @@ public class MenuPrincipal {
     private CiudadController ciudadController;
     private ClienteController clienteController;
     private FarmaciaController farmaciaController;
+    private LaboratorioController laboratorioController;
 
     public MenuPrincipal() {
-        
+
         PaisRepository paisRepository = new PaisRepository();
         CreatePaisUseCase createPaisUseCase = new CreatePaisUseCase(paisRepository);
         paisController = new PaisController(createPaisUseCase, paisRepository);
@@ -79,6 +84,10 @@ public class MenuPrincipal {
         FarmaciaRepository farmaciaRepository = new FarmaciaRepository();
         CreateFarmaciaUseCase createFarmaciaUseCase = new CreateFarmaciaUseCase(farmaciaRepository);
         farmaciaController = new FarmaciaController(createFarmaciaUseCase, farmaciaRepository, scanner);
+
+        LaboratorioRepository laboratorioRepository = new LaboratorioRepository();
+        CreateLaboratorioUseCase createLaboratorioUseCase = new CreateLaboratorioUseCase(laboratorioRepository);
+        laboratorioController = new LaboratorioController(createLaboratorioUseCase, laboratorioRepository, scanner);
     }
 
     public void start() {
@@ -133,10 +142,10 @@ public class MenuPrincipal {
                     clienteController.tabla_cliente();
                     break;
                 case 8:
-                    farmaciaController.tabla_farmacia();
+                    farmaciaController.tabla_Farmacia();
                     break;
                 case 9:
-                    // tabla de laboratorio
+                    laboratorioController.tabla_Laboratorio();
                     break;
                 case 10:
                     // tabla de medicina

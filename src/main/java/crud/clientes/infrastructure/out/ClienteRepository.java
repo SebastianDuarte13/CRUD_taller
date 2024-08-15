@@ -57,28 +57,29 @@ public class ClienteRepository implements ClienteService {
 
     @Override
     public void updateCliente(Cliente cliente) {
-        String sql = "UPDATE clientes SET nombres = ?, apellidos = ?, email = ?, fecha_nacimiento = ?, lon = ?, latitud = ?, cod_ciudad = ? WHERE codigo_reg = ?";
+        String sql = "UPDATE clientes SET nombres = ?, apellidos = ?, email = ?, fecha_nacimiento = ?, lon = ?, latitud = ?, cod_ciudad = ? WHERE id = ?";
         try (Connection connection = DatabaseConfig.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, cliente.getId());
-            statement.setString(2, cliente.getNombres());
-            statement.setString(3, cliente.getApellidos());
-            statement.setString(4, cliente.getEmail());
-            statement.setDate(5, cliente.getFecha_nacimiento());
-            statement.setFloat(6, cliente.getLon());
-            statement.setFloat(7, cliente.getLatitud());
-            statement.setString(8, cliente.getCod_ciudad());
+            statement.setString(1, cliente.getNombres());
+            statement.setString(2, cliente.getApellidos());
+            statement.setString(3, cliente.getEmail());
+            statement.setDate(4, cliente.getFecha_nacimiento());
+            statement.setFloat(5, cliente.getLon());
+            statement.setFloat(6, cliente.getLatitud());
+            statement.setString(7, cliente.getCod_ciudad());
+            statement.setString(8, cliente.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
     public void deleteCliente(String id) {
         String sql = "DELETE FROM clientes WHERE id = ?";
         try (Connection connection = DatabaseConfig.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+                PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
