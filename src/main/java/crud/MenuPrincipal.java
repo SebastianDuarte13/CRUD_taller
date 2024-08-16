@@ -35,6 +35,10 @@ import crud.farmacia.infrastructure.in.FarmaciaController;
 import crud.farmacia.infrastructure.out.FarmaciaRepository;
 import crud.farmacia.application.CreateFarmaciaUseCase;
 
+import crud.farmaciamedicina.application.CreateFarmediUseCase;
+import crud.farmaciamedicina.infrastructure.in.FarmediController;
+import crud.farmaciamedicina.infrastructure.out.FarmediRepository;
+
 import crud.laboratorio.infrastructure.in.LaboratorioController;
 import crud.laboratorio.application.CreateLaboratorioUseCase;
 import crud.laboratorio.infrastructure.out.LaboratorioRepository;
@@ -55,6 +59,7 @@ public class MenuPrincipal {
     private FarmaciaController farmaciaController;
     private LaboratorioController laboratorioController;
     private MedicinaController medicinaController;
+    private FarmediController farmediController;
 
     public MenuPrincipal() {
 
@@ -97,6 +102,11 @@ public class MenuPrincipal {
         MedicinaRepository medicinaRepository = new MedicinaRepository();
         CreateMedicinaUseCase createMedicinaUseCase = new CreateMedicinaUseCase(medicinaRepository);
         medicinaController = new MedicinaController(createMedicinaUseCase, medicinaRepository, scanner);
+
+        FarmediRepository farmediRepository = new FarmediRepository();
+        CreateFarmediUseCase createFarmediUseCase = new CreateFarmediUseCase(farmediRepository);
+        farmediController = new FarmediController(createFarmediUseCase, farmediRepository, scanner);
+
     }
 
     public void start() {
@@ -160,7 +170,7 @@ public class MenuPrincipal {
                     medicinaController.tabla_Medicina();
                     break;
                 case 11:
-                    // tabla de farmaciamedicina
+                    farmediController.tabla_Farmedi();
                     break;
                 case 12:
                     System.exit(0);
